@@ -211,88 +211,88 @@ defmodule About_Enums do
   think "partitioning" do
     numbers = 1..10
     {left, right} = Enum.partition(numbers, fn(x) -> rem(x, 2) == 1 end)
-    assert left == __?
-    assert right == __?
+    assert left == [1,3,5,7,9]
+    assert right == [2,4,6,8,10]
   end
 
   think "reduction" do
     numbers = 1..10
     result = Enum.reduce(numbers, 0, fn (x, acc) -> acc + x end)
-    assert result == __?
+    assert result == 55
   end
 
   think "rejection" do
     numbers = 1..10
     result = Enum.reject(numbers, fn(x) -> rem(x, 2) == 1 end)
-    assert result == __?
+    assert result == [2,4,6,8,10]
   end
 
   think "reversal" do
     numbers = 1..10
-    assert Enum.reverse(numbers) == __?
+    assert Enum.reverse(numbers) == [10,9,8,7,6,5,4,3,2,1,]
   end
 
   think "shuffle" do
     numbers = 1..10
-    assert_? Enum.shuffle(numbers) == numbers
+    refute Enum.shuffle(numbers) == numbers
   end
 
   think "slicing" do
     numbers = 1..10
-    assert Enum.slice(numbers, 2, 2) == __?
+    assert Enum.slice(numbers, 2, 2) == [3,4]
   end
 
   think "slicing goes too far" do
     numbers = 1..10
-    assert Enum.slice(numbers, 2, 100) == __?
+    assert Enum.slice(numbers, 2, 100) == [3, 4, 5, 6, 7, 8, 9, 10]
   end
 
   think "sorting" do
     numbers = [1, 6, 3, 8, 4, 2, 9, 5, 7]
-    assert Enum.sort(numbers) == __?
+    assert Enum.sort(numbers) == [1,2,3,4,5,6,7,8,9]
   end
 
   think "unique items only, please" do
     numbers = [1, 1, 2, 3, 3, 4]
-    assert Enum.uniq(numbers) == __?
+    assert Enum.uniq(numbers) == [1,2,3,4]
   end
 
   think "splitting" do
     numbers = [1, 2, 3, 4]
     {left, right} = Enum.split(numbers, 2)
-    assert left == __?
-    assert right == __?
+    assert left == [1,2]
+    assert right == [3,4]
   end
 
   think "splitting while function is true" do
     numbers = 1..10
     {left, right} = Enum.split_while(numbers, fn (x) -> x < 5 end)
-    assert left == __?
-    assert right == __?
+    assert left == [1,2,3,4]
+    assert right == [5,6,7,8,9,10]
   end
 
   think "taking some items" do
     numbers = 1..5
-    assert Enum.take(numbers, 2) == __?
+    assert Enum.take(numbers, 2) == [1,2]
   end
 
   think "taking some items the other way" do
     numbers = 1..5
-    assert Enum.take(numbers, -2) == __?
+    assert Enum.take(numbers, -2) == [4, 5]
   end
 
   think "taking some items the other way is not always as expected" do
     numbers = 1..10
-    assert Enum.take(numbers, -2) == __?
+    assert Enum.take(numbers, -2) == '\t\n'
   end
 
   think "taking every so often" do
     numbers = 1..10
-    assert Enum.take_every(numbers, 3) == __?
+    assert Enum.take_every(numbers, 3) == [1, 4, 7, 10]
   end
 
   think "taking while we can" do
     numbers = 1..10
-    assert Enum.take_while(numbers, fn (x) -> x < 5 end) == __?
+    assert Enum.take_while(numbers, fn (x) -> x < 5 end) == [1,2,3,4]
   end
 end

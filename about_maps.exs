@@ -8,61 +8,61 @@ defmodule About_Maps do
 
   think "maps are a key-value store" do
     map = %{name: "Ryan", age: 27}
-    assert map[:name] == __?
-    assert map[:likes] == __?
+    assert map[:name] == "Ryan"
+    assert map[:likes] == nil
   end
 
   think "keys can be more than atoms" do
     map = %{"name" => "Ryan"}
-    assert map["name"] == __?
+    assert map["name"] == "Ryan"
   end
 
   think "there is more than one way to access a map" do
     map = %{name: "Ryan", age: 27}
-    assert Map.get(map, :name) == __?
-    assert Map.get(map, :likes, "programming") == __?
+    assert Map.get(map, :name) == "Ryan"
+    assert Map.get(map, :likes, "programming") == "programming"
   end
 
   think "you can ask a map about its keys" do
     map = %{name: "Ryan", age: 27}
-    assert Map.keys(map) == __?
+    assert Map.keys(map) == [:age,:name]
     # Further meditation:
     # Why are keys not returned in the order in which they're specified?
   end
 
   think "You can ask a map about its values" do
     map = %{name: "Ryan", age: 27}
-    assert Map.values(map) == __?
+    assert Map.values(map) == [27,"Ryan"]
   end
 
   think "you can ask a map if it has a key" do
     map = %{name: "Ryan", age: 27}
-    assert Map.has_key?(map, :name) == __?
-    assert Map.has_key?(map, :likes) == __?
+    assert Map.has_key?(map, :name) == true
+    assert Map.has_key?(map, :likes) == false
   end
 
   think "fetching a key works if the key exists..." do
     map = %{name: "Ryan", age: 27}
-    assert Map.fetch(map, :name) == __?
+    assert Map.fetch(map, :name) == {:ok,"Ryan"}
   end
 
   think "... but what happens if we try to fetch a non-existant key?" do
     map = %{name: "Ryan", age: 27}
-    assert Map.fetch(map, :likes) == __?
+    assert Map.fetch(map, :likes) == :error
   end
 
   think "you can also pop a key" do
     map = %{amount: 10}
     {value, map} = Map.pop(map, :amount)
-    assert value == __?
-    assert map == __?
+    assert value == 10
+    assert map == %{}
   end
 
   think "popping a non-existant key" do
     map = %{amount: 10}
     { value, map } = Map.pop(map, :age)
-    assert value == __?
-    assert map == __?
+    assert value == nil
+    assert map == %{amount: 10}
   end
 
   think "merging together two maps" do
